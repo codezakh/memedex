@@ -15,4 +15,10 @@ router.get('/:userId', (request, response) => {
     .catch(noUserFound => response.status(404).send(noUserFound));
 });
 
+router.patch(':/userId', (request, response) => {
+  userModel.findByIdAndUpdate(request.params.userId, request.body)
+    .then(userUpdated => response.send(userUpdated))
+    .catch(failedToUpdate => response.status(500).send(failedToUpdate));
+});
+
 module.exports = router;
