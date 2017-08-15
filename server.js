@@ -1,17 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const apiRoutes = require('./mdx_backend/router');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const apiRoutes = require('./mdx_backend/router');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+
+app.set('view engine', 'ejs');
+app.use(express.static(`${__dirname}/app`));
 
 mongoose.connect('mongodb://localhost/memedex');
 mongoose.Promise = Promise;
 app.use('/api', apiRoutes);
 
 
-app.listen(3000);
+app.listen(process.env.port || 3000);
 
 module.exports = app;
