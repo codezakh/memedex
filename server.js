@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.set('view engine', 'ejs');
-app.use(express.static(`${__dirname}/app`));
+app.use(express.static(`${__dirname}/mdx_frontend`));
 
 mongoose.connect('mongodb://localhost/memedex');
 mongoose.Promise = Promise;
