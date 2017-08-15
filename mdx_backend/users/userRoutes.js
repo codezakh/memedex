@@ -9,6 +9,11 @@ router.post('/', (request, response) => {
     .catch(failure => response.status(500).send(failure.errmsg));
 });
 
+router.get('/', (request, response) => {
+  userModel.find()
+    .then(allUsers => response.send(allUsers));
+});
+
 router.get('/:userId', (request, response) => {
   userModel.findById(request.params.userId)
     .then(foundUser => response.send(foundUser))
