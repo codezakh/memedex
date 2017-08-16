@@ -12,10 +12,10 @@ app.use(cors());
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/mdx_frontend`));
 
-if (process.env.MLAB_USERNAME) {
-  const username = process.env.MLAB_USERNAME;
-  const password = process.env.MLAB_PASSWORD;
-  const mongoUri = process.env.MLAB_CONNSTR;
+if (process.env.MONGODB_USERNAME) {
+  const username = process.env.MONGODB_USERNAME;
+  const password = process.env.MONGODB_PASSWORD;
+  const mongoUri = process.env.MONGODB_CONNSTR;
   const connectionString = `mongodb://${username}:${password}@${mongoUri}`;
   mongoose.connect(connectionString);
 } else {
