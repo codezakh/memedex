@@ -8,5 +8,11 @@ angular.module('memeDex')
           controller: 'LandingController',
           controllerAs: 'model',
         },
+      )
+      .when(
+        '/memelist',
+        {
+          templateUrl: 'views/memeListView.html',
+        },
       );
   });
