@@ -16,7 +16,7 @@ if (process.env.MONGODB_USERNAME) {
   const username = process.env.MONGODB_USERNAME;
   const password = process.env.MONGODB_PASSWORD;
   const mongoUri = process.env.MONGODB_CONNSTR;
-  const connectionString = `mongodb://${username}:${password}@${mongoUri}`;
+  const connectionString = `mongodb://${username}:${password}@${mongoUri}/memedex`;
   mongoose.connect(connectionString);
 } else {
   mongoose.connect('mongodb://localhost/memedex');
