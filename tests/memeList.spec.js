@@ -3,6 +3,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../server');
 const memeListModel = require('../mdx_backend/memelists/memeListModels');
+const memeModel = require('../mdx_backend/memes/memeModels');
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -25,6 +26,13 @@ describe('the /memelist endpoint', function () {
       });
   });
 
+  afterEach(function () {
+    return memeModel.find().remove(() => undefined)
+      .then(function () {
+        return memeListModel.find().remove(() => undefined);
+      });
+  });
+
   it('should let you create a memelist', function () {
     return request()
       .post('/api/memelist')
@@ -44,4 +52,8 @@ describe('the /memelist endpoint', function () {
         expect(response.body).to.have.property('_id', String(this.testMemeList._id));
       });
   });
+
+  // it('should let you add a meme to a memelist', function () {
+  //   memeModel.create({});
+  // });
 });
