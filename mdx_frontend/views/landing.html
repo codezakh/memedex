@@ -66,7 +66,14 @@
                         <h4 class="modal-title" id="myModalLabel">Add meme to list</h4>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div class="list-group">
+                            <div ng-repeat="(key, value) in model.listitems">
+                                <button type="button"
+                                        class="list-group-item">
+                                    {{value.value}}
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -83,6 +90,9 @@
                     <div class="info">
                         <h2 class="title">Meme title will go here</h2>
                         <p class="desc">Not sure what I'll write here</p>
+                        <div>
+
+                        </div>
                         <ul>
                             <li style="width:33%;" data-toggle="modal"
                                 data-target="#myModal"><span
