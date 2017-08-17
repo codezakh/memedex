@@ -15,4 +15,14 @@ router.get('/:memeListId', (request, response) => {
     .catch(failure => response.status(404).send(failure));
 });
 
+router.put('/:memeListId', (request, response) => {
+  if (request.body.addMeme) {
+    memeListModel.addMemeToList(request.params.memeListId, request.body.addMeme)
+      .then(memeAdded => response.send(memeAdded))
+      .catch(memeNotAdded => response.status(500).send(memeNotAdded));
+  } else {
+    response.status(400).send('no meme to add');
+  }
+});
+
 module.exports = router;

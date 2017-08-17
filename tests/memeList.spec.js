@@ -53,7 +53,19 @@ describe('the /memelist endpoint', function () {
       });
   });
 
-  // it('should let you add a meme to a memelist', function () {
-  //   memeModel.create({});
-  // });
+  it('should let you add a meme to a memelist', function () {
+    return memeModel.create({
+      memeUrl: 'url',
+      memeTitle: 'memeTitle',
+    }).then(createdMeme => request()
+      .put(`/api/memelist/${this.testMemeList._id}`)
+      .send({ addMeme: createdMeme._id })
+      .then((response) => {
+        expect(response).to.have.status(200);
+        return memeListModel.findById(this.testMemeList._id)
+          .then((modifiedMemeList) => {
+            expect(modifiedMemeList.containedMemes).to.deep.equal([createdMeme._id]);
+          });
+      }));
+  });
 });
