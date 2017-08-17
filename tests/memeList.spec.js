@@ -72,6 +72,14 @@ describe('the /memelist endpoint', function () {
   });
 
   it('should let you retrive all memelists', function () {
-    return memeListModel.create({});
+    return memeListModel.create({
+      listTitle: 'another list',
+      owner: this.testUser._id,
+    }).then(() => request()
+      .get('/api/memelist')
+      .then((response) => {
+        expect(response).to.have.status(200);
+        expect(response.body).to.have.lengthOf(2);
+      }));
   });
 });

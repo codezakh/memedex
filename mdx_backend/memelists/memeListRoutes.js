@@ -9,6 +9,12 @@ router.post('/', (request, response) => {
     .catch(failure => response.status(500).send(failure.ermsg));
 });
 
+router.get('/', (request, response) => {
+  memeListModel.find()
+    .then(foundMemeLists => response.send(foundMemeLists))
+    .catch(() => response.send([]));
+});
+
 router.get('/:memeListId', (request, response) => {
   memeListModel.findById(request.params.memeListId)
     .then(foundMemeList => response.send(foundMemeList))
