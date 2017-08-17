@@ -8,7 +8,7 @@ class subredditPostDownloader {
     this.resourceUri = `${this.baseUri}/r/${this.subreddit}/top/.json?count=${this.count}`;
   }
 
-  parsePostJSON(rawPostJSON) {
+  static parsePostJSON(rawPostJSON) {
     const postChildren = JSON.parse(rawPostJSON).data.children;
     return postChildren.map((postAsChild) => {
       const postAsChildContent = postAsChild.data;
@@ -25,7 +25,7 @@ class subredditPostDownloader {
         if (error) {
           reject(error);
         } else {
-          resolve(this.parsePostJSON(body));
+          resolve(subredditPostDownloader.parsePostJSON(body));
         }
       });
     });
