@@ -20,10 +20,14 @@ router.get('/:userId', (request, response) => {
     .catch(noUserFound => response.status(404).send(noUserFound));
 });
 
-router.patch(':/userId', (request, response) => {
-  userModel.findByIdAndUpdate(request.params.userId, request.body)
-    .then(userUpdated => response.send(userUpdated))
-    .catch(failedToUpdate => response.status(500).send(failedToUpdate));
+router.patch('/:userId', (request, response) => {
+  if (request.body.addFavorite) {
+    userModel.addUserToFavorites(request.params.userId, request.body.addFavorite)
+      .then(userFavorited => response.send(userFavorited))
+      .catch(userNotFavorited => response.status(500).send(userNotFavorited));
+  } else {
+    response.status(400).send('no user to favorite');
+  }
 });
 
 module.exports = router;

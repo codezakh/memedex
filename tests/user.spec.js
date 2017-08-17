@@ -43,4 +43,18 @@ describe('the /user endpoint', function () {
         expect(response.body).to.have.property('_id', String(this.testUser._id));
       });
   });
+
+  it('should allow one user to favorite another user by id', function () {
+    return userModel.create({ username: 'usertofavorite', password: 'password' })
+      .then(createdUser => request()
+        .patch(`/api/user/${this.testUser._id}`)
+        .send({ addFavorite: createdUser._id })
+        .then((response) => {
+          expect(response).to.have.status(200);
+          return userModel.findById(this.testUser._id)
+            .then((modifiedUser) => {
+              expect(modifiedUser.favoritedUsers).to.deep.equal([createdUser._id]);
+            });
+        }));
+  });
 });
