@@ -1,7 +1,8 @@
 const querystring = require('querystring');
 const request = require('request');
+const _ = require('lodash');
 
-const processMeme = (memeUrl) => {
+const requestCognitionOCROnMeme = (memeUrl) => {
   const subscriptionKey = process.env.COGNITION_API_KEY;
   const uriBase = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr';
   const params = {
@@ -29,7 +30,10 @@ const processMeme = (memeUrl) => {
   });
 };
 
+const parseCognitionResponse = response =>
+  _.flatMapDeep(response.regions, region =>
+    _.map(region.lines, line =>
+      _.map(line.words, word => word.text)));
 
-const a = processMeme('https://i.redd.it/dz0qua4kcbgz.png');
-a.then(response => console.log(response))
-
+module.exports.requestCognitionOCROnMeme = requestCognitionOCROnMeme;
+module.exports.parseCognitionResponse = parseCognitionResponse;
