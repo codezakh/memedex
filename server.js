@@ -18,6 +18,8 @@ if (process.env.MONGODB_USERNAME) {
   const mongoUri = process.env.MONGODB_CONNSTR;
   const connectionString = `mongodb://${username}:${password}@${mongoUri}/memedex`;
   mongoose.connect(connectionString);
+} else if (process.env.MEMEDEX_TEST) {
+  mongoose.connect('mongodb://localhost/memedex-test');
 } else {
   mongoose.connect('mongodb://localhost/memedex');
 }

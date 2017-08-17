@@ -16,7 +16,9 @@
       };
 
       api.addUserToFavorites = function (userId, userToFavoriteId) {
-        return $http.post(`/api/user/${userId}`, { addFavorite: userToFavoriteId });
+        return $http.put(`/api/user/${userId}`, { addFavorite: userToFavoriteId });
       };
+
+      return api;
     });
 }());
