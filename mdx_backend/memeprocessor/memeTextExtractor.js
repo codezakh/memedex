@@ -2,7 +2,7 @@ const querystring = require('querystring');
 const request = require('request');
 
 const processMeme = (memeUrl) => {
-  const subscriptionKey = 'process.env.COGNITION_API_KEY';
+  const subscriptionKey = process.env.COGNITION_API_KEY;
   const uriBase = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr';
   const params = {
     language: 'en',
