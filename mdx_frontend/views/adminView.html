@@ -105,16 +105,35 @@
         <div class="col-lg-10 col-lg-offset-1">
             <form name="memeListForm" novalidate>
                 <div class="form-group" ng-repeat="memeList in model.allLists">
-                    <label>MemeList Title</label>
+                    <label>MemeList Title (id is {{memeList._id}})</label>
                     <input type="text" class="form-control" name="listtitle"
                            ng-model="memeList.listTitle" required>
                     <label>MemeList Owner</label>
                     <input type="text" class="form-control" name="listowner"
                            ng-model="memeList.owner" required>
                     <label>MemeList Contained Memes</label>
-                    <input type="text" class="form-control"
-                           name="listcontainedmemes"
-                           ng-model="memeList.containedMemes">
+                    <div class="input-group"
+                         ng-repeat="(addMemeIdx, memeId) in memeList.containedMemes">
+                        <input
+                                class="form-control" ng-model="memeId">
+                        <span class="input-group-btn aligned-btn">
+                            <button class="btn btn-danger"
+                                    type="button"
+                                    ng-click="model.removeMemeFromList(addMemeIdx, memeList)">
+                                Delete
+                            </button>
+                        </span>
+                    </div>
+
+                    <input class="form-control" ng-model="model.newMemeToList"
+                           placeholder="type id of meme to add, then click button">
+                    <button class="btn btn-success padded-btn"
+                            ng-click="model.addMemeToList(memeList._id)">
+                        Add meme
+                    </button>
+                    <button class="btn btn-warning padded-btn"
+                            ng-click="model.updateMemeList(memeList._id, memeList)">Update
+                    </button>
                     <button class="btn btn-danger padded-btn"
                             ng-click="model.deleteMemeList(memeList._id)">Delete
                     </button>
@@ -133,6 +152,18 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div ng-repeat="meme in model.allMemes">
+                <h2>{{meme.memeTitle}}</h2>
+                <p>{{meme._id}}</p>
+                <p>{{meme.memeText}}</p>
+            </div>
         </div>
     </div>
 

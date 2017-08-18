@@ -14,6 +14,10 @@
           .then(function (allLists) {
             vm.allLists = allLists.data;
           });
+        MemeService.getAllMemes()
+          .then(function (allMemes) {
+            vm.allMemes = allMemes.data;
+          });
       }
 
       init();
