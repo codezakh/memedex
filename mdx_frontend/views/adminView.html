@@ -52,27 +52,34 @@
             </form>
             <form name="newUserForm" novalidate>
                 <div class="form-group">
+                    <label>Username</label>
                     <input class="form-control" ng-model="model.prospectiveUser.username">
+                    <label>Password</label>
                     <input class="form-control" ng-model="model.prospectiveUser.password">
                     <button class="btn btn-primary" ng-click="model.createUser()">Create</button>
                 </div>
             </form>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <form name="memeListForm" novalidate>
                 <div class="form-group" ng-repeat="memeList in model.allLists">
-                    <label>{{ user.username }}'s Email</label>
+                    <label>MemeList Title</label>
                     <input type="text" class="form-control" name="listtitle" ng-model="memeList.listTitle" required>
+                    <label>MemeList Owner</label>
                     <input type="text" class="form-control" name="listowner" ng-model="memeList.owner" required>
+                    <label>MemeList Contained Memes</label>
                     <input type="text" class="form-control" name="listcontainedmemes" ng-model="memeList.containedMemes">
                     <button class="btn btn-danger" ng-click="model.deleteMemeList(memeList._id)">Delete</button>
                 </div>
             </form>
             <form name="newmemeListForm" novalidate>
                 <div class="form-group">
+                    <label>MemeList Title</label>
                     <input class="form-control" ng-model="model.newMemeList.listTitle">
+                    <label>MemeList Owner</label>
                     <input class="form-control" ng-model="model.newMemeList.owner">
                     <button class="btn btn-primary" ng-click="model.createMemeList()">Create</button>
                 </div>
