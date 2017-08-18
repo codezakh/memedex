@@ -1,6 +1,6 @@
 (function () {
   angular.module('memeDex')
-    .controller('LandingController', function ($log) {
+    .controller('LandingController', function ($log, MemeService) {
       var model = this;
       model.listitems = [
         { _id: 1, value: 'apple' },

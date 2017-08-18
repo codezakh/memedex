@@ -3,12 +3,18 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../server');
 const memeModel = require('../mdx_backend/memes/memeModels');
+const teardown = require('./teardown');
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 const request = () => chai.request(app);
 
 describe('the /meme endpoint', function () {
+
+  afterEach(function () {
+    return teardown();
+  });
+
   beforeEach(function () {
     const self = this;
     return memeModel.find().remove(() => undefined)
@@ -46,6 +52,15 @@ describe('the /meme endpoint', function () {
       .then((response) => {
         expect(response).to.have.status(200);
         expect(response.body).to.have.property('_id', String(this.testMeme._id));
+      });
+  });
+
+  it('should let you retrieve all memes', function () {
+    return request()
+      .get('/api/meme')
+      .then((response) => {
+        expect(response).to.have.status(200);
+        expect(response.body).to.have.lengthOf(1);
       });
   });
 });

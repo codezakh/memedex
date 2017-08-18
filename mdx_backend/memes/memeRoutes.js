@@ -9,10 +9,16 @@ router.post('/', (request, response) => {
     .catch(failure => response.status(500).send(failure.ermsg));
 });
 
+router.get('/', (request, response) => {
+  memeModel.find()
+    .then(foundMemes => response.send(foundMemes));
+});
+
 router.get('/:memeId', (request, response) => {
   memeModel.findById(request.params.memeId)
     .then(foundMeme => response.send(foundMeme))
     .catch(noMemeFound => response.send(noMemeFound));
 });
+
 
 module.exports = router;
