@@ -9,11 +9,12 @@
       };
       var loggedInUser = null;
 
-      api.getLoggedInUser = function () {
-        return loggedInUser;
-      };
 
       api.isLoggedIn = function () {
+        return $http.get('/api/auth/loggedin');
+      };
+
+      api.getLoggedInUser = function () {
         return $http.get('/api/auth/loggedin');
       };
 

@@ -18,9 +18,9 @@ router.post('/logout', (request, response) => {
 
 router.get('/loggedin', (request, response) => {
   if (request.user) {
-    response.send({ loggedIn: true });
+    response.send(request.user);
   } else {
-    response.send({ loggedIn: false });
+    response.send({});
   }
 });
 

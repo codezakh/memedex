@@ -4,7 +4,10 @@
       AuthService) {
       var vm = this;
 
-      vm.loggedInUser = AuthService.getLoggedInUser();
+      AuthService.getLoggedInUser()
+        .then(function (response) {
+          vm.loggedInUser = response.data;
+        });
 
       function init() {
         MemeService.getAllMemes()
