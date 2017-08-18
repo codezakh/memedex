@@ -10,9 +10,15 @@ router.post('/', (request, response) => {
 });
 
 router.get('/', (request, response) => {
-  memeListModel.find()
-    .then(foundMemeLists => response.send(foundMemeLists))
-    .catch(() => response.send([]));
+  if (request.query.user) {
+    memeListModel.find({ owner: request.query.user })
+      .then(foundUsers => response.send(foundUsers))
+      .catch(notFound => response.status(404).send(notFound));
+  } else {
+    memeListModel.find()
+      .then(foundMemeLists => response.send(foundMemeLists))
+      .catch(() => response.send([]));
+  }
 });
 
 router.get('/:memeListId', (request, response) => {

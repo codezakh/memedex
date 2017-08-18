@@ -107,4 +107,14 @@ describe('the /memelist endpoint', function () {
           });
       });
   });
+
+  it('should let you get al memelists for a user', function () {
+    return request()
+      .get(`/api/memelist?user=${this.testMemeList.owner}`)
+      .then((response) => {
+        expect(response).to.have.status(200);
+        expect(response.body).to.have.lengthOf(1);
+        expect(response.body[0]).to.have.property('_id', String(this.testMemeList._id));
+      });
+  });
 });
