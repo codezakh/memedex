@@ -27,8 +27,17 @@ router.put('/:memeListId', (request, response) => {
       .then(memeAdded => response.send(memeAdded))
       .catch(memeNotAdded => response.status(500).send(memeNotAdded));
   } else {
-    response.status(400).send('no meme to add');
+    memeListModel.findByIdAndUpdate(request.params.memeListId,
+      { $set: request.body }, { new: true })
+      .then(updatedDocument => response.send(updatedDocument))
+      .catch(updateFailed => response.status(500).send(updateFailed));
   }
+});
+
+router.delete('/:memeListId', (request, response) => {
+  memeListModel.findByIdAndRemove(request.params.memeListId)
+    .then(memeListRemoved => response.send(memeListRemoved))
+    .catch(memeListNotRemoved => response.status(500).send(memeListNotRemoved));
 });
 
 module.exports = router;

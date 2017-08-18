@@ -82,4 +82,29 @@ describe('the /memelist endpoint', function () {
         expect(response.body).to.have.lengthOf(2);
       }));
   });
+
+  it('should let you delete a memelist', function () {
+    return request()
+      .delete(`/api/memelist/${this.testMemeList._id}`)
+      .then((response) => {
+        expect(response).to.have.status(200);
+        return memeListModel.find()
+          .then((collection) => {
+            expect(collection).to.have.lengthOf(0);
+          });
+      });
+  });
+
+  it('should let you update a memelist', function () {
+    return request()
+      .put(`/api/memelist/${this.testMemeList._id}`)
+      .send({ listTitle: 'changed title' })
+      .then((response) => {
+        expect(response).to.have.status(200);
+        return memeListModel.findById(this.testMemeList._id)
+          .then((updatedList) => {
+            expect(updatedList).to.have.property('listTitle', 'changed title');
+          });
+      });
+  });
 });
