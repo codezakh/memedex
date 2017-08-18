@@ -1,12 +1,15 @@
 (function () {
   angular.module('memeDex')
     .controller('AdminController', function ($log, MemeService, $routeParams,
-      UserService, MemeListService, $route, AuthService) {
+      UserService, MemeListService, $route, AuthService, $location) {
       var vm = this;
 
       AuthService.getLoggedInUser()
         .then(function (response) {
           vm.loggedInUser = response.data;
+          if (vm.loggedInUser.username !== 'admin') {
+            $location.path('#/login');
+          }
         });
       function init() {
         UserService.getAllUsers()
