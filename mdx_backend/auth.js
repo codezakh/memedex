@@ -16,4 +16,12 @@ router.post('/logout', (request, response) => {
   response.send('logged out');
 });
 
+router.get('/loggedin', (request, response) => {
+  if (request.user) {
+    response.send({ loggedIn: true });
+  } else {
+    response.send({ loggedIn: false });
+  }
+});
+
 module.exports = router;
