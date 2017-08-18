@@ -12,14 +12,10 @@
       UserService.findUserById(userId)
         .then(function (foundUser) {
           vm.foundUser = foundUser.data;
-          vm.foundFavoritedUsers = [];
-          _.forEach(foundUser.favoritedUsers, function (favoritedUser) {
-            UserService.findUserById(favoritedUser)
-              .then(function (foundFavoritedUser) {
-                vm.foundFavoritedUsers.push(foundFavoritedUser.data);
-                $log.info(vm.foundFavoritedUsers);
-              });
-          });
+          UserService.getAllFavoritesForUser(userId)
+            .then(function (foundFavorites) {
+              vm.foundFavoritedUsers = foundFavorites.data;
+            });
         });
     });
 }());

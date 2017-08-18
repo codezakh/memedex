@@ -36,6 +36,7 @@
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
+        <h2>Created Lists</h2>
         <div class="user-created-lists">
             <ul class="event-list">
                 <li ng-repeat="memeList in model.allMemeLists">
@@ -50,14 +51,21 @@
                 </li>
             </ul>
         </div>
+
+        <hr>
+        <h2>Followed Users</h2>
         <div class="followed-users">
             <ul class="event-list">
-                <li ng-repeat="user in model.foundFavoritedUsers">
+                <li ng-repeat="favoritedUser in model.foundFavoritedUsers">
                     <div class="info">
-                        <h2 class="title">{{user.username}}</h2>
-                        <p class="desc">{{user.memeLists.length}} lists</p>
+                        <h2 class="title">{{favoritedUser.username}}</h2>
+                        <p class="desc">{{favoritedUser.memeLists.length}} lists</p>
                         <ul>
-                            <li style="width:50%;"><span class="fa fa-user"></span></li>
+                            <li style="width:50%;">
+                                <a ng-href="#/user/{{favoritedUser._id}}">
+                                    <span class="fa fa-user"></span>
+                                </a>
+                            </li>
                             <li style="width:50%;"><span class="fa fa-pencil"></span></li>
                         </ul>
                     </div>
