@@ -28,7 +28,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#/user">
+                        <a ng-href="#/user/${{model.loggedInUser._id}}">
                             <i class="glyphicon glyphicon-user"></i>
                             Me
                         </a>
@@ -44,7 +44,9 @@
                         <h2 class="title">{{memeList.listTitle}}</h2>
                         <p class="desc">{{memeList.containedMemes.length}} memes</p>
                         <ul>
-                            <li style="width:50%;"><span class="fa fa-user"></span></li>
+                            <li style="width:50%;">
+                                <span class="fa fa-user"></span>
+                            </li>
                             <li style="width:50%;"><span class="fa fa-pencil"></span></li>
                         </ul>
                     </div>

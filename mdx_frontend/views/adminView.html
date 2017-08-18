@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#/user">
+                        <a ng-href="#/user/{{model.loggedInUser._id}}">
                             <i class="glyphicon glyphicon-user"></i>
                             Me
                         </a>
@@ -46,7 +46,7 @@
         <div class="col-lg-10 col-lg-offset-1">
             <form name="userForm" novalidate>
                 <div class="form-group"
-                     ng-repeat="(idx, user) in model.allUsers">
+                     ng-repeat="(idx, user) in model.allUsers track by idx">
                     <label>{{ user.username }}'s id: {{user._id}}</label>
                     <input type="text" class="form-control" name="username"
                            ng-model="user.username" id="{{idx}}username"
@@ -56,7 +56,7 @@
                            ng-model="user.password" id="{{idx}}password">
                     <label>Favorited Users</label>
                     <div class="input-group"
-                         ng-repeat="(favoritedUserIdx, favoritedUser) in user.favoritedUsers">
+                         ng-repeat="(favoritedUserIdx, favoritedUser) in user.favoritedUsers track by favoritedUserIdx">
                         <input
                                 class="form-control" ng-model="favoritedUser">
                         <span class="input-group-btn aligned-btn">
