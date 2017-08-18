@@ -1,7 +1,10 @@
 (function () {
   angular.module('memeDex')
-    .controller('LandingController', function ($log, MemeService, MemeListService) {
+    .controller('LandingController', function ($log, MemeService, MemeListService,
+      AuthService) {
       var vm = this;
+
+      vm.loggedInUser = AuthService.getLoggedInUser();
 
       function init() {
         MemeService.getAllMemes()

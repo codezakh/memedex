@@ -4,9 +4,8 @@
       var vm = this;
       vm.login = function () {
         AuthService.logInUser(vm.user)
-          .then(function (loginSuccess) {
-            vm.loggedInUser = AuthService.getLoggedInUser();
-            $location.path('/').replace();
+          .then(function () {
+            return $location.path('/').replace();
           });
       };
     });

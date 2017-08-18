@@ -7,7 +7,7 @@
         getLoggedInUser: undefined,
         isLoggedIn: undefined,
       };
-      var loggedInUser;
+      var loggedInUser = null;
 
       api.getLoggedInUser = function () {
         return loggedInUser;

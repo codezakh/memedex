@@ -1,8 +1,10 @@
 (function () {
   angular.module('memeDex')
-    .controller('UserDetailController', function ($log, MemeListService, UserService, $routeParams) {
+    .controller('UserDetailController', function ($log, MemeListService, UserService, $routeParams, AuthService) {
       var vm = this;
       var userId = $routeParams.userId;
+
+      vm.loggedInUser = AuthService.getLoggedInUser();
 
       MemeListService.getAllMemeListsForUser(userId)
         .then(function (allMemeLists) {
