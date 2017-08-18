@@ -12,8 +12,10 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "cognitive-services": "^0.1.2",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
     "flat": "^4.0.0",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",

@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
+const passport = require('passport');
 const apiRoutes = require('./mdx_backend/router');
 
 const app = express();
@@ -11,6 +14,12 @@ app.use(cors());
 
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/mdx_frontend`));
+
+// auth stuff
+app.use(cookieParser());
+app.use(expressSession({ secret: 'secret' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 if (process.env.MONGODB_USERNAME) {
   const username = process.env.MONGODB_USERNAME;
