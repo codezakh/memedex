@@ -1,6 +1,6 @@
 (function () {
   angular.module('memeDex')
-    .factory('AuthService', function ($http, $rootScope) {
+    .factory('AuthService', function ($http, $rootScope, $log) {
       var api = {
         logInUser: undefined,
         logOutUser: undefined,

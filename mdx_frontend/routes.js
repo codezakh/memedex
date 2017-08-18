@@ -13,6 +13,8 @@ angular.module('memeDex')
         '/login',
         {
           templateUrl: 'views/loginView.html',
+          controller: 'LoginController',
+          controllerAs: 'model',
         },
       )
       .when(

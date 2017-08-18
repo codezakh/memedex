@@ -38,10 +38,13 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <label for="input-username">Username</label>
-                <input id="input-username" class="form-control">
+                <input id="input-username" class="form-control"
+                       ng-model="model.user.username">
                 <label for="input-password">password</label>
-                <input id="input-password" type="password" class="form-control">
-                <button class="btn btn-primary padded-btn btn-block">Login</button>
+                <input id="input-password" type="password" class="form-control"
+                       ng-model="model.user.password">
+                <button class="btn btn-primary padded-btn btn-block" ng-click="model.login()">Login
+                </button>
             </div>
         </div>
     </div>
