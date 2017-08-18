@@ -30,4 +30,10 @@ router.patch('/:userId', (request, response) => {
   }
 });
 
+router.delete('/:userId', (request, response) => {
+  userModel.findByIdAndRemove(request.params.userId)
+    .then(userRemoved => response.send(userRemoved))
+    .catch(userNotRemoved => response.status(500).send(userNotRemoved));
+});
+
 module.exports = router;

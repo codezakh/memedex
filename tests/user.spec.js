@@ -62,4 +62,16 @@ describe('the /user endpoint', function () {
             });
         }));
   });
+
+  it('should allow you to delete a user', function () {
+    return request()
+      .delete(`/api/user/${this.testUser._id}`)
+      .then((response) => {
+        expect(response).to.have.status(200);
+        return userModel.find()
+          .then((collection) => {
+            expect(collection).to.have.lengthOf(0);
+          });
+      });
+  });
 });

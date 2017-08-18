@@ -23,7 +23,7 @@ router.get('/:memeId', (request, response) => {
 router.delete('/:memeId', (request, response) => {
   memeModel.findByIdAndRemove(request.params.memeId)
     .then(memeRemoved => response.send(memeRemoved))
-    .catch(memeNotRemoved => response.send(memeNotRemoved));
+    .catch(memeNotRemoved => response.status(500).send(memeNotRemoved));
 });
 
 
