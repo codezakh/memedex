@@ -43,4 +43,10 @@ router.put('/:userId', (request, response) => {
     .catch(updatedFailed => response.status(500).send(updatedFailed));
 });
 
+router.get('/:userId/favorites', (request, response) => {
+  userModel.getAllFavoritesForUser(request.params.userId)
+    .then(foundFavorites => response.send(foundFavorites))
+    .catch(notFoundFavorites => response.status(404).send(notFoundFavorites));
+});
+
 module.exports = router;

@@ -87,4 +87,15 @@ describe('the /user endpoint', function () {
           });
       });
   });
+
+  it('should allow you to find all favorites for a user', function () {
+    return userModel.addUserToFavorites(this.testUser._id, this.testUser._id)
+      .then(() => request()
+        .get(`/api/user/${this.testUser._id}/favorites`)
+        .then((response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.have.length(1);
+          expect(response.body[0]).to.have.property('_id', String(this.testUser._id));
+        }));
+  });
 });

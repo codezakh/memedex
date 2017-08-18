@@ -7,6 +7,7 @@
         createMemeList: undefined,
         deleteMemeList: undefined,
         updateMemeList: undefined,
+        getAllMemeListsForUser: undefined,
       };
 
       api.addMemeToList = function (memeListId, memeId) {
@@ -27,6 +28,10 @@
 
       api.updateMemeList = function (memeListId, memeList) {
         return $http.put(`/api/memelist/${memeListId}`, memeList);
+      };
+
+      api.getAllMemeListsForUser = function (userId) {
+        return $http.get(`/api/memelist?user=${userId}`);
       };
 
       return api;

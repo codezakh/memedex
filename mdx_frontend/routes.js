@@ -26,6 +26,14 @@ angular.module('memeDex')
         },
       )
       .when(
+        '/user/:userId',
+        {
+          templateUrl: 'views/userDetailView.html',
+          controller: 'UserDetailController',
+          controllerAs: 'model',
+        },
+      )
+      .when(
         '/admin',
         {
           templateUrl: 'views/adminView.html',
