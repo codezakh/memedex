@@ -20,5 +20,11 @@ router.get('/:memeId', (request, response) => {
     .catch(noMemeFound => response.send(noMemeFound));
 });
 
+router.delete('/:memeId', (request, response) => {
+  memeModel.findByIdAndRemove(request.params.memeId)
+    .then(memeRemoved => response.send(memeRemoved))
+    .catch(memeNotRemoved => response.send(memeNotRemoved));
+});
+
 
 module.exports = router;

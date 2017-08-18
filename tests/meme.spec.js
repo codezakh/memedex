@@ -10,7 +10,6 @@ const expect = chai.expect;
 const request = () => chai.request(app);
 
 describe('the /meme endpoint', function () {
-
   afterEach(function () {
     return teardown();
   });
@@ -61,6 +60,18 @@ describe('the /meme endpoint', function () {
       .then((response) => {
         expect(response).to.have.status(200);
         expect(response.body).to.have.lengthOf(1);
+      });
+  });
+
+  it('should let you delete a meme', function () {
+    return request()
+      .delete(`/api/meme/${this.testMeme._id}`)
+      .then((response) => {
+        expect(response).to.have.status(200);
+        return memeModel.find()
+          .then((collection) => {
+            expect(collection).to.have.length(0);
+          });
       });
   });
 });
