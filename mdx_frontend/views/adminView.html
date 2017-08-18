@@ -4,7 +4,9 @@
         <nav class="navbar navbar-default navbar-xs" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -19,7 +21,8 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse"
+                 id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#/">
@@ -37,73 +40,101 @@
             </div><!-- /.navbar-collapse -->
         </nav>
     </div>
+
+
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <form name="userForm" novalidate>
-                <div class="form-group" ng-repeat="(idx, user) in model.allUsers">
+                <div class="form-group"
+                     ng-repeat="(idx, user) in model.allUsers">
                     <label>{{ user.username }}'s id: {{user._id}}</label>
                     <input type="text" class="form-control" name="username"
-                           ng-model="user.username" id="{{idx}}username" required>
+                           ng-model="user.username" id="{{idx}}username"
+                           required>
                     <label for="{{idx}}password">Password</label>
                     <input type="text" class="form-control" name="password"
                            ng-model="user.password" id="{{idx}}password">
                     <label>Favorited Users</label>
-                    <div class="input-group" ng-repeat="(favoritedUserIdx, favoritedUser) in user.favoritedUsers">
+                    <div class="input-group"
+                         ng-repeat="(favoritedUserIdx, favoritedUser) in user.favoritedUsers">
                         <input
-                               class="form-control" ng-model="favoritedUser">
+                                class="form-control" ng-model="favoritedUser">
                         <span class="input-group-btn aligned-btn">
                             <button class="btn btn-danger"
                                     type="button"
-                                    ng-click="model.removeFavorite(favoritedUserIdx, user)"
-                            >
+                                    ng-click="model.removeFavorite(favoritedUserIdx, user)">
                                 Delete
                             </button>
                         </span>
                     </div>
-                    <input class="form-control"  ng-model="model.newFavorite">
+                    <input class="form-control" ng-model="model.newFavorite"
+                           placeholder="type id of user to favorite, then click button">
                     <button class="btn btn-success padded-btn"
                             ng-click="model.addUserToFavorites(user._id)">
                         Add favorite
                     </button>
                     <button class="btn btn-warning padded-btn"
-                            ng-click="model.updateUser(user._id, user)">Update</button>
-                    <button class="btn btn-danger" ng-click="model.deleteUser(user._id)">Delete</button>
+                            ng-click="model.updateUser(user._id, user)">Update
+                    </button>
+                    <button class="btn btn-danger"
+                            ng-click="model.deleteUser(user._id)">Delete
+                    </button>
                 </div>
             </form>
             <form name="newUserForm" novalidate>
                 <div class="form-group">
                     <label>Username</label>
-                    <input class="form-control" ng-model="model.prospectiveUser.username">
+                    <input class="form-control"
+                           ng-model="model.prospectiveUser.username">
                     <label>Password</label>
-                    <input class="form-control" ng-model="model.prospectiveUser.password">
-                    <button class="btn btn-primary padded-btn" ng-click="model.createUser()">Create</button>
+                    <input class="form-control"
+                           ng-model="model.prospectiveUser.password">
+                    <button class="btn btn-primary padded-btn"
+                            ng-click="model.createUser()">Create
+                    </button>
                 </div>
             </form>
         </div>
     </div>
+
+
     <hr>
+
+
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <form name="memeListForm" novalidate>
                 <div class="form-group" ng-repeat="memeList in model.allLists">
                     <label>MemeList Title</label>
-                    <input type="text" class="form-control" name="listtitle" ng-model="memeList.listTitle" required>
+                    <input type="text" class="form-control" name="listtitle"
+                           ng-model="memeList.listTitle" required>
                     <label>MemeList Owner</label>
-                    <input type="text" class="form-control" name="listowner" ng-model="memeList.owner" required>
+                    <input type="text" class="form-control" name="listowner"
+                           ng-model="memeList.owner" required>
                     <label>MemeList Contained Memes</label>
-                    <input type="text" class="form-control" name="listcontainedmemes" ng-model="memeList.containedMemes">
-                    <button class="btn btn-danger padded-btn" ng-click="model.deleteMemeList(memeList._id)">Delete</button>
+                    <input type="text" class="form-control"
+                           name="listcontainedmemes"
+                           ng-model="memeList.containedMemes">
+                    <button class="btn btn-danger padded-btn"
+                            ng-click="model.deleteMemeList(memeList._id)">Delete
+                    </button>
                 </div>
             </form>
             <form name="newmemeListForm" novalidate>
                 <div class="form-group">
                     <label>MemeList Title</label>
-                    <input class="form-control" ng-model="model.newMemeList.listTitle">
+                    <input class="form-control"
+                           ng-model="model.newMemeList.listTitle">
                     <label>MemeList Owner</label>
-                    <input class="form-control" ng-model="model.newMemeList.owner">
-                    <button class="btn btn-primary padded-btn" ng-click="model.createMemeList()">Create</button>
+                    <input class="form-control"
+                           ng-model="model.newMemeList.owner">
+                    <button class="btn btn-primary padded-btn"
+                            ng-click="model.createMemeList()">Create
+                    </button>
                 </div>
             </form>
         </div>
     </div>
+
+
 </div>
