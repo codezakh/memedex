@@ -56,5 +56,8 @@ angular.module('memeDex')
           controller: 'AdminController',
           controllerAs: 'model',
         },
+      )
+      .otherwise(
+        '/login',
       );
   });
