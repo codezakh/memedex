@@ -85,22 +85,22 @@
 
         <div class="meme-search-results">
             <ul class="event-list">
-                <li>
-                    <img alt="My 24th Birthday!" src="https://b.thumbs.redditmedia.com/TXds3-ya8ojWXHrZtGqRdTZ7QoLaKU6oYfRFrBFQ6Us.jpg" />
-                    <div class="info">
-                        <h2 class="title">Meme title will go here</h2>
-                        <p class="desc">Not sure what I'll write here</p>
-                        <div>
+                    <li ng-repeat="meme in model.allMemes">
+                        <img alt="My 24th Birthday!" src="{{meme.memeThumbnail}}" />
+                        <div class="info">
+                            <h2 class="title">{{meme.memeTitle}}</h2>
+                            <p class="desc">{{meme.memeText}}</p>
+                            <div>
 
+                            </div>
+                            <ul>
+                                <li style="width:50%;" data-toggle="modal"
+                                    data-target="#myModal"><span
+                                        class="glyphicon glyphicon-plus"></span></li>
+                                <li style="width:50%;"><span class="fa fa-info-circle"></span></li>
+                            </ul>
                         </div>
-                        <ul>
-                            <li style="width:50%;" data-toggle="modal"
-                                data-target="#myModal"><span
-                                    class="glyphicon glyphicon-plus"></span></li>
-                            <li style="width:50%;"><span class="fa fa-info-circle"></span></li>
-                        </ul>
-                    </div>
-                </li>
+                    </li>
             </ul>
         </div>
     </div>
