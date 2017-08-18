@@ -1,11 +1,12 @@
-
 <div>
     <div class="container-fluid">
 
         <nav class="navbar navbar-default navbar-xs" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -15,12 +16,13 @@
                     <b>Memedex</b>
                 </a>
                 <!--<a class="navbar-brand" href >-->
-                    <!--<span class="glyphicon glyphicon-triangle-left"><b>Go Back</b></span>-->
+                <!--<span class="glyphicon glyphicon-triangle-left"><b>Go Back</b></span>-->
                 <!--</a>-->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse"
+                 id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#/memelist">
@@ -45,11 +47,12 @@
                     <p>
                         <input type="text"
                                placeholder="Search"
-                               class="form-control">
+                               class="form-control"
+                               ng-model="model.memeSearchBoxValue">
                     </p>
                     <div class="text-center">
                         <p><a class="btn btn-primary btn-lg"
-                              href
+                              ng-click="model.searchMemes()"
                               role="button">Search</a>
                         </p>
                     </div>
@@ -58,29 +61,37 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add meme to list</h4>
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Add meme to
+                            list</h4>
                     </div>
                     <div class="modal-body">
-                        <div ng-show="model.showSuccessfulAddition" class="alert alert-success" role="alert">
+                        <div ng-show="model.showSuccessfulAddition"
+                             class="alert alert-success" role="alert">
                             Meme added!
                         </div>
                         <div class="list-group">
-                            <div class="padded-list-item" ng-repeat="(key, value) in model.listitems">
+                            <div class="padded-list-item"
+                                 ng-repeat="(key, value) in model.listitems">
                                 <button type="button"
                                         class="list-group-item"
-                                ng-click="model.addMemeToList(value._id)">
+                                        ng-click="model.addMemeToList(value._id)">
                                     {{value.listTitle}}
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">Close
+                        </button>
                         <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                     </div>
                 </div>
@@ -89,27 +100,29 @@
 
         <div class="meme-search-results">
             <ul class="event-list">
-                    <li ng-repeat="meme in model.allMemes">
-                        <img alt="My 24th Birthday!" src="{{meme.memeThumbnail}}" />
-                        <div class="info">
-                            <h2 class="title">{{meme.memeTitle}}</h2>
-                            <p class="desc">{{meme.memeText}}</p>
-                            <div>
+                <li ng-repeat="meme in model.filteredMemes">
+                    <img alt="My 24th Birthday!" src="{{meme.memeThumbnail}}"/>
+                    <div class="info">
+                        <h2 class="title">{{meme.memeTitle}}</h2>
+                        <p class="desc">{{meme.memeText}}</p>
+                        <div>
 
-                            </div>
-                            <ul>
-                                <li style="width:50%;" data-toggle="modal"
-                                    data-target="#myModal" ng-click="model.selectMeme(meme._id)">
-                                    <span
-                                        class="glyphicon glyphicon-plus"></span></li>
-                                <li style="width:50%;">
-                                    <a ng-href="#/meme/{{meme._id}}">
-                                        <span class="fa fa-info-circle"></span>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
-                    </li>
+                        <ul>
+                            <li style="width:50%;" data-toggle="modal"
+                                data-target="#myModal"
+                                ng-click="model.selectMeme(meme._id)">
+                                    <span
+                                            class="glyphicon glyphicon-plus"></span>
+                            </li>
+                            <li style="width:50%;">
+                                <a ng-href="#/meme/{{meme._id}}">
+                                    <span class="fa fa-info-circle"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

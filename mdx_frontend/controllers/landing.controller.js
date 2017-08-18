@@ -18,13 +18,14 @@
           .then(function (allMemes) {
             $log.info(allMemes);
             vm.allMemes = allMemes.data;
+            vm.filteredMemes = vm.allMemes;
           });
       }
 
       init();
 
       vm.addMemeToList = function (memeListId) {
-        console.log(vm.selectedMemeId)
+        console.log(vm.selectedMemeId);
         MemeListService.addMemeToList(memeListId, vm.selectedMemeId)
           .then(function (success) {
             vm.showSuccessfulAddition = true;
@@ -34,6 +35,12 @@
       vm.selectMeme = function (memeId) {
         vm.showSuccessfulAddition = false;
         vm.selectedMemeId = memeId;
+      };
+
+      vm.searchMemes = function () {
+        vm.filteredMemes = _.filter(vm.filteredMemes, function (singleMeme) {
+          return _.includes(singleMeme.memeText.toLowerCase(), vm.memeSearchBoxValue.toLowerCase());
+        });
       };
       $log.info('landing controller invoked');
     });
