@@ -3,6 +3,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../server');
 const userModel = require('../mdx_backend/users/userModels');
+const teardown = require('./teardown');
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -24,6 +25,10 @@ describe('the /user endpoint', function () {
             });
           });
       });
+  });
+
+  afterEach(function () {
+    return teardown();
   });
 
   it('should allow you to create users', function () {
