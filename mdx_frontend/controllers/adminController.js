@@ -39,6 +39,19 @@
           });
       };
 
+      vm.updateUser = function (userId, user) {
+        UserService.updateUser(userId, user)
+          .then(function () {
+            $route.reload();
+          });
+      };
+
+      vm.removeFavorite = function (userFavoriteIdx, user) {
+        $log.info(user)
+        user.favoritedUsers.splice(userFavoriteIdx, 1);
+        vm.updateUser(user._id, user);
+      };
+
       vm.createMemeList = function () {
         MemeListService.createMemeList(vm.newMemeList)
           .then(function () {

@@ -7,6 +7,7 @@
         addUserToFavorites: undefined,
         getAllUsers: undefined,
         deleteUser: undefined,
+        updateUser: undefined,
       };
 
       api.findUserById = function (userId) {
@@ -28,6 +29,10 @@
       api.deleteUser = function (userId) {
         return $http.delete(`/api/user/${userId}`);
       };
+
+      api.updateUser = function(userId, user) {
+        return $http.put(`/api/user/${userId}`, user);
+      }
 
       return api;
     });
