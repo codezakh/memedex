@@ -1,9 +1,13 @@
 (function () {
   angular.module('memeDex')
     .controller('AdminController', function ($log, MemeService, $routeParams,
-      UserService, MemeListService, $route) {
+      UserService, MemeListService, $route, AuthService) {
       var vm = this;
 
+      AuthService.getLoggedInUser()
+        .then(function (response) {
+          vm.loggedInUser = response.data;
+        });
       function init() {
         UserService.getAllUsers()
           .then(function (allUsers) {

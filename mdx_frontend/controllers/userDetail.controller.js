@@ -4,7 +4,10 @@
       var vm = this;
       var userId = $routeParams.userId;
 
-      vm.loggedInUser = AuthService.getLoggedInUser();
+      AuthService.getLoggedInUser()
+        .then(function (response) {
+          vm.loggedInUser = response.data;
+        });
 
       MemeListService.getAllMemeListsForUser(userId)
         .then(function (allMemeLists) {
