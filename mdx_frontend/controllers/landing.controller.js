@@ -1,8 +1,19 @@
 (function () {
   angular.module('memeDex')
     .controller('LandingController', function ($log, MemeService) {
-      var model = this;
-      model.listitems = [
+      var vm = this;
+
+      function init() {
+        MemeService.getAllMemes()
+          .then(function (allMemes) {
+            $log.info(allMemes);
+            vm.allMemes = allMemes.data;
+          });
+      }
+
+      init();
+
+      vm.listitems = [
         { _id: 1, value: 'apple' },
         { _id: 2, value: 'bapple' },
         { _id: 3, value: 'capple' },
