@@ -10,6 +10,12 @@ angular.module('memeDex')
         },
       )
       .when(
+        '/login',
+        {
+          templateUrl: 'views/loginView.html',
+        },
+      )
+      .when(
         '/memelist',
         {
           templateUrl: 'views/memeListView.html',
