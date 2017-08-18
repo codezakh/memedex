@@ -6,7 +6,7 @@ const router = express.Router({ mergeParams: true });
 router.post('/', (request, response) => {
   userModel.create(request.body)
     .then(createdUser => response.send(createdUser))
-    .catch(failure => response.status(500).send(failure.errmsg));
+    .catch(failure => response.status(200).send(failure.errmsg));
 });
 
 router.get('/', (request, response) => {

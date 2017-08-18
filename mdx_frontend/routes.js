@@ -22,5 +22,13 @@ angular.module('memeDex')
           controller: 'MemeDetailController',
           controllerAs: 'model',
         },
+      )
+      .when(
+        '/admin',
+        {
+          templateUrl: 'views/adminView.html',
+          controller: 'AdminController',
+          controllerAs: 'model',
+        },
       );
   });

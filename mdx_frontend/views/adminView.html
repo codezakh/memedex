@@ -1,0 +1,55 @@
+<div>
+    <div class="container-fluid">
+
+        <nav class="navbar navbar-default navbar-xs" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href onclick="window.history.back()">
+                    <b>◀ Memedex</b>
+                </a>
+                <!--<a class="navbar-brand" href >-->
+                <!--<span class="glyphicon glyphicon-triangle-left"><b>Go Back</b></span>-->
+                <!--</a>-->
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#/">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Memes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/user">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Me
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </div>
+    <form name="userForm" novalidate>
+        <div class="form-group" ng-repeat="user in model.allUsers">
+            <label>{{ user.username }}'s Email</label>
+            <input type="text" class="form-control" name="username" ng-model="user.username" required>
+            <input type="text" class="form-control" name="password" ng-model="user.password" required>
+            <button class="btn btn-danger" ng-click="model.deleteUser(user._id)">Delete</button>
+        </div>
+    </form>
+    <form name="newUserForm" novalidate>
+        <div class="form-group">
+            <input class="form-control" ng-model="model.prospectiveUser.username">
+            <input class="form-control" ng-model="model.prospectiveUser.password">
+            <button class="btn btn-primary" ng-click="model.createUser()">Create</button>
+        </div>
+    </form>
+</div>

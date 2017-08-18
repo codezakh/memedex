@@ -5,6 +5,8 @@
         findUserById: undefined,
         createUser: undefined,
         addUserToFavorites: undefined,
+        getAllUsers: undefined,
+        deleteUser: undefined,
       };
 
       api.findUserById = function (userId) {
@@ -16,7 +18,15 @@
       };
 
       api.addUserToFavorites = function (userId, userToFavoriteId) {
-        return $http.put(`/api/user/${userId}`, { addFavorite: userToFavoriteId });
+        return $http.patch(`/api/user/${userId}`, { addFavorite: userToFavoriteId });
+      };
+
+      api.getAllUsers = function () {
+        return $http.get('/api/user');
+      };
+
+      api.deleteUser = function (userId) {
+        return $http.delete(`/api/user/${userId}`);
       };
 
       return api;
