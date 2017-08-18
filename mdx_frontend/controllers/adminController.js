@@ -12,7 +12,6 @@
         UserService.getAllUsers()
           .then(function (allUsers) {
             vm.allUsers = allUsers.data;
-            $log.info(allUsers);
           });
         MemeListService.getAllMemeLists()
           .then(function (allLists) {
@@ -55,7 +54,6 @@
       };
 
       vm.removeFavorite = function (userFavoriteIdx, user) {
-        $log.info(user);
         user.favoritedUsers.splice(userFavoriteIdx, 1);
         vm.updateUser(user._id, user);
       };
@@ -89,8 +87,11 @@
       };
 
       vm.removeMemeFromList = function (addMemeIdx, memeList) {
-        memeList.containedMemes.split(addMemeIdx, 1);
-        memeList.updateMemeList(memeList._id, memeList);
+        memeList.containedMemes.splice(addMemeIdx, 1);
+        MemeListService.updateMemeList(memeList._id, memeList)
+          .then(function () {
+            $route.reload();
+          });
       };
     });
 }());
