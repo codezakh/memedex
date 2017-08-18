@@ -18,6 +18,14 @@ angular.module('memeDex')
         },
       )
       .when(
+        '/register',
+        {
+          templateUrl: 'views/registerView.html',
+          controller: 'RegisterController',
+          controllerAs: 'model',
+        },
+      )
+      .when(
         '/memelist',
         {
           templateUrl: 'views/memeListView.html',
