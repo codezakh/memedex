@@ -30,10 +30,7 @@ const requestCognitionOCROnMeme = (memeUrl) => {
   });
 };
 
-const parseCognitionResponse = response =>
-  _.flatMapDeep(response.regions, region =>
-    _.map(region.lines, line =>
-      _.map(line.words, word => word.text)));
+const parseCognitionResponse = response => _.flatMapDeep(response.regions, region => _.map(region.lines, line => _.map(line.words, word => word.text)));
 
 module.exports.requestCognitionOCROnMeme = requestCognitionOCROnMeme;
 module.exports.parseCognitionResponse = parseCognitionResponse;
