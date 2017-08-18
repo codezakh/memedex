@@ -13,6 +13,8 @@ angular.module('memeDex')
         '/memelist',
         {
           templateUrl: 'views/memeListView.html',
+          controller: 'MemeListController',
+          controllerAs: 'model',
         },
       )
       .when(

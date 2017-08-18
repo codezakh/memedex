@@ -57,22 +57,13 @@
         </div>
         <div class="meme-search-results">
             <ul class="event-list">
-                <li>
-                    <img alt="My 24th Birthday!" src="https://b.thumbs.redditmedia.com/TXds3-ya8ojWXHrZtGqRdTZ7QoLaKU6oYfRFrBFQ6Us.jpg" />
+                <li ng-repeat="memeList in model.allMemeLists">
                     <div class="info">
-                        <h2 class="title">Meme title will go here</h2>
-                        <p class="desc">just kill me honestly</p>
+                        <h2 class="title">{{memeList.listTitle}}</h2>
+                        <p class="desc">{{memeList.containedMemes.length}} memes</p>
                         <ul>
-                            <li style="width:33%;">1 <span class="glyphicon glyphicon-ok"></span></li>
-                            <li style="width:34%;">3 <span class="fa fa-question"></span></li>
-                            <li style="width:33%;">103 <span class="fa fa-envelope"></span></li>
-                        </ul>
-                    </div>
-                    <div class="social">
-                        <ul>
-                            <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
-                            <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
-                            <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
+                            <li style="width:50%;"><span class="fa fa-user"></span></li>
+                            <li style="width:50%;"><span class="fa fa-pencil"></span></li>
                         </ul>
                     </div>
                 </li>
