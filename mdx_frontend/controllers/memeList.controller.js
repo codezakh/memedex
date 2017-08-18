@@ -1,6 +1,6 @@
 (function () {
   angular.module('memeDex')
-    .controller('MemeListController', function ($log, MemeListService, AuthService) {
+    .controller('MemeListController', function ($log, MemeListService, AuthService, $route) {
       var vm = this;
 
       AuthService.getLoggedInUser()
@@ -16,6 +16,14 @@
       }
 
       init();
+
+      vm.createMemeList = function () {
+        vm.newMemeList.owner = vm.loggedInUser._id;
+        MemeListService.createMemeList(vm.newMemeList)
+          .then(function () {
+            $route.reload();
+          });
+      };
 
       $log.info('landing controller invoked');
     });

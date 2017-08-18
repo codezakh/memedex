@@ -40,16 +40,17 @@
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h1>Find a meme, by its text.</h1>
+                    <h1>Create a memelist, to save your favorite memes.</h1>
                     <p>
                         <input type="text"
-                               placeholder="Search"
-                               class="form-control">
+                               placeholder="list title"
+                               class="form-control"
+                               ng-model="model.newMemeList.listTitle">
                     </p>
                     <div class="text-center">
                         <p><a class="btn btn-primary btn-lg"
-                              href
-                              role="button">Search</a>
+                              ng-click="model.createMemeList()"
+                              role="button">Create</a>
                         </p>
                     </div>
                 </div>
