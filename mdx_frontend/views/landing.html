@@ -66,18 +66,22 @@
                         <h4 class="modal-title" id="myModalLabel">Add meme to list</h4>
                     </div>
                     <div class="modal-body">
+                        <div ng-show="model.showSuccessfulAddition" class="alert alert-success" role="alert">
+                            Meme added!
+                        </div>
                         <div class="list-group">
                             <div class="padded-list-item" ng-repeat="(key, value) in model.listitems">
                                 <button type="button"
-                                        class="list-group-item">
-                                    {{value.value}}
+                                        class="list-group-item"
+                                ng-click="model.addMemeToList(value._id)">
+                                    {{value.listTitle}}
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                     </div>
                 </div>
             </div>
@@ -95,7 +99,8 @@
                             </div>
                             <ul>
                                 <li style="width:50%;" data-toggle="modal"
-                                    data-target="#myModal"><span
+                                    data-target="#myModal" ng-click="model.selectMeme(meme._id)">
+                                    <span
                                         class="glyphicon glyphicon-plus"></span></li>
                                 <li style="width:50%;">
                                     <a ng-href="#/meme/{{meme._id}}">

@@ -1,12 +1,16 @@
 (function () {
   angular.module('memeDex')
     .controller('LandingController', function ($log, MemeService, MemeListService,
-      AuthService) {
+      AuthService, $route) {
       var vm = this;
-
+      vm.showSuccessfulAddition = false;
       AuthService.getLoggedInUser()
         .then(function (response) {
           vm.loggedInUser = response.data;
+          MemeListService.getAllMemeListsForUser(vm.loggedInUser._id)
+            .then(function (allMemeListsResponse) {
+              vm.listitems = allMemeListsResponse.data;
+            });
         });
 
       function init() {
@@ -19,13 +23,18 @@
 
       init();
 
-      vm.listitems = [
-        { _id: 1, value: 'apple' },
-        { _id: 2, value: 'bapple' },
-        { _id: 3, value: 'capple' },
-        { _id: 4, value: 'dapple' },
-        { _id: 5, value: 'eapple' },
-      ];
+      vm.addMemeToList = function (memeListId) {
+        console.log(vm.selectedMemeId)
+        MemeListService.addMemeToList(memeListId, vm.selectedMemeId)
+          .then(function (success) {
+            vm.showSuccessfulAddition = true;
+          });
+      };
+
+      vm.selectMeme = function (memeId) {
+        vm.showSuccessfulAddition = false;
+        vm.selectedMemeId = memeId;
+      };
       $log.info('landing controller invoked');
     });
 }());
