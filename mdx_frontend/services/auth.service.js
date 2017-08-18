@@ -34,13 +34,15 @@
 
       api.logOutUser = function () {
         return new Promise(function (resolve, reject) {
-          $http.post('/api/auth/logout', loggedInUser)
-            .then(function (logoutSuccess) {
-              loggedInUser = false;
-              $rootScope.loggedInUser = null;
-              resolve(logoutSuccess);
-            })
-            .catch(reject);
+          api.getLoggedInUser()
+            .then(function (loggedInUser) {
+              $http.post('/api/auth/logout', loggedInUser)
+                .then(function (logoutSuccess) {
+                  $rootScope.loggedInUser = null;
+                  resolve(logoutSuccess);
+                })
+                .catch(reject);
+            });
         });
       };
 

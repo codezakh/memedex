@@ -28,7 +28,7 @@
                         </a>
                     </li>
                     <li>
-                        <a ng-href="#/user/${{model.loggedInUser._id}}">
+                        <a ng-href="#/user/{{model.loggedInUser._id}}">
                             <i class="glyphicon glyphicon-user"></i>
                             Me
                         </a>
@@ -59,6 +59,11 @@
                     ng-click="model.followUser()">
                 Follow User
             </button>
+            <div ng-hide="{{model.showLogOutButton}}">
+                <button class="btn btn-danger" ng-click="model.logOutUser()">
+                    Logout
+                </button>
+            </div>
         </div>
         <hr>
         <h2>Followed Users</h2>
