@@ -6,7 +6,7 @@ const router = express.Router({ mergeParams: true });
 router.post('/', (request, response) => {
   userModel.create(request.body)
     .then(createdUser => response.send(createdUser))
-    .catch(failure => response.status(200).send(failure.errmsg));
+    .catch(failure => response.status(500).send(failure.errmsg));
 });
 
 router.get('/', (request, response) => {
@@ -34,6 +34,13 @@ router.delete('/:userId', (request, response) => {
   userModel.findByIdAndRemove(request.params.userId)
     .then(userRemoved => response.send(userRemoved))
     .catch(userNotRemoved => response.status(500).send(userNotRemoved));
+});
+
+router.put('/:userId', (request, response) => {
+  userModel.findByIdAndUpdate(request.params.userId, { $set: request.body },
+    { new: true })
+    .then(updatedDocument => response.send(updatedDocument))
+    .catch(updatedFailed => response.status(500).send(updatedFailed));
 });
 
 module.exports = router;

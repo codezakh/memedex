@@ -74,4 +74,17 @@ describe('the /user endpoint', function () {
           });
       });
   });
+
+  it('should allow you to edit a user', function () {
+    return request()
+      .put(`/api/user/${this.testUser._id}`)
+      .send({ username: 'new username', favoritedUsers: [this.testUser._id] })
+      .then((response) => {
+        expect(response).to.have.status(200);
+        return userModel.findById(this.testUser._id)
+          .then((updatedUser) => {
+            expect(updatedUser.favoritedUsers).to.deep.equal([this.testUser._id]);
+          });
+      });
+  });
 });

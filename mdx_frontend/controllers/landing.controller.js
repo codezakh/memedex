@@ -1,6 +1,6 @@
 (function () {
   angular.module('memeDex')
-    .controller('LandingController', function ($log, MemeService) {
+    .controller('LandingController', function ($log, MemeService, MemeListService) {
       var vm = this;
 
       function init() {

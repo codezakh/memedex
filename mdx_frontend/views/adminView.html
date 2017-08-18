@@ -47,6 +47,13 @@
                     <label for="{{idx}}password">Password</label>
                     <input type="text" class="form-control" name="password"
                            ng-model="user.password" id="{{idx}}password">
+                    <label>Favorited Users</label>
+                    <input ng-repeat="favoritedUser in user.favoritedUsers" class="form-control" ng-model="favoritedUser">
+                    <input class="form-control"  ng-model="model.newFavorite">
+                    <button class="btn btn-success"
+                            ng-click="model.addUserToFavorites(user._id)">
+                        Add favorite
+                    </button>
                     <button class="btn btn-danger" ng-click="model.deleteUser(user._id)">Delete</button>
                 </div>
             </form>

@@ -32,6 +32,13 @@
           });
       };
 
+      vm.addUserToFavorites = function (userId) {
+        UserService.addUserToFavorites(userId, vm.newFavorite)
+          .then(function () {
+            $route.reload();
+          });
+      };
+
       vm.createMemeList = function () {
         MemeListService.createMemeList(vm.newMemeList)
           .then(function () {
